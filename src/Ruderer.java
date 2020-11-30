@@ -5,13 +5,12 @@ public class Ruderer {
     Random zufall = new Random();
 
     //Instanzvariable
-    int leistung;
+    private int leistung;
 
+    //Getter & Setter
     public int getLeistung() {
-
         return this.leistung;
     }
-
 
     /* Konstruktor */
     public Ruderer() {

@@ -5,14 +5,15 @@ public class Vierer extends Ruderboote {
     public final static String shape11 = "     /  /    ";
     public final static String shape12 = "<--o-o-o-o-->";
     public final static String shape13 = "   \\     \\   ";
-
     public final static String shape21 = "     \\  \\      ";
-
     public final static String shape23 = "   /     /   ";
+
+    private static final int besatzung = 4;
+
 
     public Vierer(int ypos, int xpos, int gesleistung) {
 
-        super(ypos, xpos, gesleistung);
+        super(ypos, xpos, besatzung, gesleistung);
     }
 
     @Override

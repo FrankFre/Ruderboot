@@ -7,122 +7,132 @@ public class Simulation {
     private static int besatzung;
     private final int distanz;
     int summeleist;
+    int bewegung;
+    int k, j;
 
-    //Array vom Typ Ruderboote
     private Ruderboote[] boote;
     private Simulation simulation;
-
-
-    public static int getBesatzung() {
-        return besatzung;
-    }
 
     // Konstruktor Simulation
     public Simulation(int anzboote, int besatzung, int distanz) {
         this.anzboote = anzboote;
         this.besatzung = besatzung;
         this.distanz = distanz;
+        booteGenerieren(anzboote, besatzung);
     }
 
     public void booteGenerieren(int anzboote, int besatzung) {
+        this.boote = new Ruderboote[anzboote];
 
-        // Array vom Typ Boote mit der Anzahl Boote generieren
-        this.boote = new Ruderboote[this.anzboote];
-        // System.out.println(this.anzahlb);
-
-        // Schleife für die Generierung der Boote
-        for (int i = 0; i < anzboote; i++) {
-            int zeile = 3;
+        int zeile = 3;                           // y- Offset für die Fahrspuren
+        for (int i = 0; i < anzboote; i++) {    //Boote generieren
 
             switch (besatzung) {
-                case 2:
-                    boote[i] = new Zweier(zeile, 4, 0);
+                case 2:                              // Generierung der verschiedenen Bootstypen
+                    boote[i] = new Zweier(zeile, 1, 0);
                     break;
 
                 case 4:
-                    boote[i] = new Vierer(zeile, 4, 0);
+                    boote[i] = new Vierer(zeile, 1, 0);
                     break;
             }
-            zeile = zeile + 4;
-        }
-
-        // Schleife für die Generierung der Ruderer
-        for (int j = 0; j < anzboote; j++) {
 
             for (int y = 0; y < besatzung; y++) {
 
                 Ruderer ruderer = new Ruderer();
-
-                summeleist = boote[j].getGesleistung();
-//                    System.out.println("Leistung Summe 1: " + summeleist);
-
+                summeleist = boote[i].getGesleistung();
                 summeleist = summeleist + ruderer.getLeistung();
-//                        System.out.println("Leistung Summe 2: " + summeleist);
-
-                boote[j].setGesleistung(summeleist);
-//                        System.out.println("Leistung nach Set: " + boote[0].getGesleistung());
-
-
+                boote[i].setGesleistung(summeleist);
             }
-            System.out.println("Leistung des Bootes " + j + ":  " + boote[j].getGesleistung());
+            System.out.println("Leistung des Bootes " + i + ":  " + boote[i].getGesleistung());
+            zeile = zeile + 4;                       // y- Offset für die weiteren Boote
         }
     }
 
     public void wettkampf() throws InterruptedException {
 
-        //rennen ausgeben
-        while (true) {
-            Thread.sleep(300);
-            for (int j = 0; j < anzboote; j++) {     //Zeilen der Rennsimulation
-                System.out.println();
-                for (int k = 0; k < distanz; k++) {
+        System.out.println();
 
-                    if (k == boote[j].getXpos()) {
-                        System.out.println(boote[j].getShape11());
-                        System.out.println(boote[j].getShape12());
-                        System.out.println(boote[j].getShape13());
-                    } else     System.out.print(" ");
+        for (int a = 0; a < 30; a++) {
+            Thread.sleep(600);
+            System.out.println("Ruderbootrennen");
+            System.out.println();
+
+            for (j = 0; j < anzboote; j++) {                //alle Boote durchlaufen mit Shape 1
+
+                for (k = 0; k <= boote[j].getXpos(); k++) {     // spaltenweiser Durchlauf für die Ausgabe der Boote
+                    if (k != boote[j].getXpos())
+                        System.out.print(" ");
+                    else System.out.println(boote[j].getShape11());
                 }
+                for (k = 0; k <= boote[j].getXpos(); k++) {     // zeilenweiser Durchlauf dür die Ausgabe der Boote
+                    if (k != boote[j].getXpos())
+                        System.out.print(" ");
+                    else System.out.println(boote[j].getShape12());
+                }
+                for (k = 1; k <= boote[j].getXpos(); k++) {     // zeilenweiser Durchlauf dür die Ausgabe der Boote
+                    if (k != boote[j].getXpos())
+                        System.out.print(" ");
+                    else System.out.println(boote[j].getShape13());
+                }
+                System.out.println();
+                bootBewegen(j);
             }
-            Thread.sleep(300);
-            for (int j = 0; j < anzboote; j++) {     //Zeilen der Rennsimulation
-                System.out.println();
-                for (int k = 0; k < distanz; k++) {
 
-                    if (k == boote[j].getXpos()) {
-                        System.out.println(boote[j].getShape21());
-                        System.out.println(boote[j].getShape12());
-                        System.out.println(boote[j].getShape23());
-                        //     System.out.println("|");
-                    }  else     System.out.print(" ");
-                }
-              bootBewegen(j);
-           }
+
+            //Ausgabe des zweiten Shape der Boote
+//            Thread.sleep(600);
+//            System.out.println("Ruderbootrennen");
+//            System.out.println();
+//
+//            for (j = 0; j < anzboote; j++) {                //alle Boote durchlaufen mit Shape 2
+//
+//                for (k = 0; k <= boote[j].getXpos(); k++) {            //alle Boote durchlaufen
+//
+//                    for (int k = 1; k <= boote[j].getXpos(); k++) {     // zeilenweiser Durchlauf für die Ausgabe der Boote
+//                        if (k != boote[j].getXpos()) {
+//                            System.out.print(" ");
+//                        } else System.out.println(boote[j].getShape21());
+//                    }
+//
+//                    for (int k = 1; k <= boote[j].getXpos(); k++) {     // zeilenweiser Durchlauf dür die Ausgabe der Boote
+//                        if (k != boote[j].getXpos()) {
+//                            System.out.print(" ");
+//                        } else System.out.println(boote[j].getShape12());
+//                    }
+//
+//                    for (int k = 1; k <= boote[j].getXpos(); k++) {     // zeilenweiser Durchlauf dür die Ausgabe der Boote
+//                        if (k != boote[j].getXpos()) {
+//                            System.out.print(" ");
+//                        } else System.out.println(boote[j].getShape23());
+//                    }
+//
+//                    System.out.println("");
+//                    bootBewegen(j);
+//                }
+//            }
         }
     }
 
-    private void bootBewegen(int j) {
-        float bewegung = 0;
-//
-//        System.out.println((float)boote[j].getGesleistung());
-//        System.out.println((float)Simulation.getBesatzung());
-        System.out.println("x Position von Boot " + j + " " + boote[j].getXpos());
+    public void bootBewegen(int j) {
+        System.out.println("x Position von Boot " + j + ": " + boote[j].getXpos());
+        // Erzeugung eines Bewegungsschrittes x-Koordinate auf Grundlage der Gesamtleistung
+                            System.out.println(boote[j].getGesleistung());
 
 
-        bewegung = (((float)boote[j].getGesleistung() / (float) getBesatzung()) - 400) / 10;
+        bewegung = (int) ((boote[j].getGesleistung() / boote[j].getBesatzung() - 400) / 25);
 
         bewegung = bewegung + boote[j].getXpos();
-        boote[j].setXpos((int)bewegung);
+                    System.out.println("Bewegung: " + bewegung);
 
-        System.out.println("neuer x- Wert: " + bewegung);
+        boote[j].setXpos((int) bewegung);
+                    System.out.println("neuer x- Wert: " + bewegung);
+
     }
 
-    public int getDistanz() {
-        return distanz;
-    }
-
-    public int getBoote() {
-        return this.anzboote;
+    private int getBesatzung() {
+        return besatzung;
     }
 
 }
+
