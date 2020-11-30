@@ -3,9 +3,9 @@ import java.util.Random;
 public class Simulation {
 
     //Klassenvariablen
-    private final int anzboote;
-    private static int besatzung;
-    private final int distanz;
+    private int anzahlBoote;
+    private static int anzahlRuderer;
+    private int distanz;
     int summeleist;
     int bewegung;
     int k, j;
@@ -14,11 +14,12 @@ public class Simulation {
     private Simulation simulation;
 
     // Konstruktor Simulation
-    public Simulation(int anzboote, int besatzung, int distanz) {
-        this.anzboote = anzboote;
-        this.besatzung = besatzung;
+    public Simulation(int anzahlBoote, int anzahlRuderer, int distanz) {
+        this.anzahlBoote = anzahlBoote;
+        this.anzahlRuderer= anzahlRuderer;
         this.distanz = distanz;
-        booteGenerieren(anzboote, besatzung);
+
+        booteGenerieren(anzahlBoote, anzahlRuderer);
     }
 
     public void booteGenerieren(int anzboote, int besatzung) {
@@ -52,6 +53,12 @@ public class Simulation {
 
     public void wettkampf() throws InterruptedException {
 
+
+
+
+
+
+
         System.out.println();
 
         for (int a = 0; a < 30; a++) {
@@ -59,7 +66,7 @@ public class Simulation {
             System.out.println("Ruderbootrennen");
             System.out.println();
 
-            for (j = 0; j < anzboote; j++) {                //alle Boote durchlaufen mit Shape 1
+            for (j = 0; j < anzahlBoote; j++) {                //alle Boote durchlaufen mit Shape 1
 
                 for (k = 0; k <= boote[j].getXpos(); k++) {     // spaltenweiser Durchlauf für die Ausgabe der Boote
                     if (k != boote[j].getXpos())
@@ -80,16 +87,12 @@ public class Simulation {
                 bootBewegen(j);
             }
 
-
-
-
-
             //Ausgabe des zweiten Shape der Boote
             Thread.sleep(1000);
             System.out.println("Ruderbootrennen");
             System.out.println();
 
-            for (j = 0; j < anzboote; j++) {                //alle Boote durchlaufen mit Shape 2
+            for (j = 0; j < anzahlBoote; j++) {                //alle Boote durchlaufen mit Shape 2
 
                 for (int k = 1; k <= boote[j].getXpos(); k++) {     // zeilenweiser Durchlauf für die Ausgabe der Boote
                     if (k != boote[j].getXpos()) {
@@ -132,8 +135,8 @@ public class Simulation {
 
     }
 
-    private int getBesatzung() {
-        return besatzung;
+    private int getAnzahlRuderer() {
+        return anzahlRuderer;
     }
 
 }
