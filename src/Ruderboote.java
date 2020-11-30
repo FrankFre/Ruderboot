@@ -22,37 +22,39 @@ public class Ruderboote {
         this.gesleistung = gesleistung;
     }
 
-
-
     // Getter und Setter
     public void setGesleistung(int gesleistung) {
         this.gesleistung = gesleistung;
-        }
+    }
 
     public int getGesleistung() {
         return gesleistung;
-        }
-    public int getLeistung() {  return leistung;
+    }
+
+    public int getLeistung() {
+        return leistung;
     }
 
     public int getYpos() {
         return ypos;
     }
+
     public int getXpos() {
         return xpos;
     }
 
-    public void setXpos(int xpos)  {
+    public void setXpos(int xpos) {
         this.xpos = xpos;
     }
-
 
     public String getShape11() {
         return shape11;
     }
+
     public String getShape12() {
         return shape12;
     }
+
     public String getShape13() {
         return shape13;
     }
@@ -60,11 +62,10 @@ public class Ruderboote {
     public String getShape21() {
         return shape21;
     }
+
     public String getShape23() {
         return shape23;
     }
 
-    public int getBesatzung() {
-        return besatzung;
-    }
+    public int getBesatzung() { return besatzung;  }
 }
