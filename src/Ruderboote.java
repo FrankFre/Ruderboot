@@ -1,6 +1,5 @@
 public class Ruderboote {
 
-    public static int getAnzboote;
     // Klassenvariablen
     private String shape11;
     private String shape12;

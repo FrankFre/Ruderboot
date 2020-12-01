@@ -6,12 +6,15 @@ public class Simulation {
     private final int anzahlBoote;
     private static int anzahlRuderer;
     private final int distanz;
+    private Simulation simulation;
+
+    //Instanzvariablen
     int summeleist;
     int bewegung;
     int k, j;
 
     private Ruderboote[] boote;
-    private Simulation simulation;
+
 
     // Konstruktor Simulation
     public Simulation(int anzahlBoote, int anzahlRuderer, int distanz) {
@@ -20,6 +23,11 @@ public class Simulation {
         this.distanz = distanz;
 
         booteGenerieren(anzahlBoote, anzahlRuderer);
+        distanzAnzeigen(distanz);
+    }
+
+    private void distanzAnzeigen(int distanz) {
+
     }
 
     public void booteGenerieren(int anzboote, int anzahlRuderer) {
@@ -54,9 +62,14 @@ public class Simulation {
 
         System.out.println();
 
-        for (int a = 0; a < distanz; a++) {
+        for (int a = 0; a <= distanz; a++) {
             Thread.sleep(1000);
             System.out.println("Ruderbootrennen");
+
+            for(int b = 1; b <= distanz; b++)  {
+                System.out.print("_");
+            }
+
             System.out.println();
 
             for (j = 0; j < anzahlBoote; j++) {                 //alle Boote durchlaufen mit Shape 1
@@ -83,6 +96,10 @@ public class Simulation {
             //Ausgabe des zweiten Shape der Boote
             Thread.sleep(1000);
             System.out.println("Ruderbootrennen");
+
+            for(int b = 1; b <= distanz; b++)  {
+                System.out.print("_");
+            }
             System.out.println();
 
             for (j = 0; j < anzahlBoote; j++) {                //alle Boote durchlaufen mit Shape 2
@@ -117,10 +134,8 @@ public class Simulation {
         bewegung = (int) ((boote[j].getGesleistung() / boote[j].getAnzahlRuderer() - 400) / 25);
 
         bewegung = bewegung + boote[j].getXpos();
-//        System.out.println("Bewegung: " + bewegung);
 
         boote[j].setXpos((int) bewegung);
-//        System.out.println("neuer x- Wert: " + bewegung);
 
     }
     private int getAnzahlRuderer() {
