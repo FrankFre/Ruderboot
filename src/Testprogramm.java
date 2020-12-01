@@ -29,8 +29,7 @@ public class Testprogramm {
         sc.close();
 
 
-
-        new Simulation(anzahlBoote, anzahlRuderer, distanz).wettkampf();
+    new Simulation(anzahlBoote, anzahlRuderer, distanz).wettkampf();
     }
 
     private static void falscheEingabe() {

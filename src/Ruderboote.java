@@ -8,17 +8,17 @@ public class Ruderboote {
     private String shape21;
     private String shape23;
 
-    private int besatzung;
+    private int anzahlRuderer;
     private final int ypos;
     private int xpos;
     int leistung;
     int gesleistung;
 
     /* Konstruktor */
-    public Ruderboote(int ypos, int xpos, int besatzung, int gesleistung) {
+    public Ruderboote(int ypos, int xpos, int anzahlRuderer, int gesleistung) {
         this.ypos = ypos;
         this.xpos = xpos;
-        this.besatzung = besatzung;
+        this.anzahlRuderer = anzahlRuderer;
         this.gesleistung = gesleistung;
     }
 
@@ -67,5 +67,5 @@ public class Ruderboote {
         return shape23;
     }
 
-    public int getBesatzung() { return besatzung;  }
+    public int getAnzahlRuderer() { return anzahlRuderer;  }
 }
