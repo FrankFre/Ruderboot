@@ -132,9 +132,7 @@ public class Simulation {
     public void bootBewegen(int j) {
 
         bewegung = (int) ((boote[j].getGesleistung() / boote[j].getAnzahlRuderer() - 400) / 25);
-
         bewegung = bewegung + boote[j].getXpos();
-
         boote[j].setXpos((int) bewegung);
 
     }
